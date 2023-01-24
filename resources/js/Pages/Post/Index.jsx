@@ -1,10 +1,11 @@
 import React from "react";
 import Authenticated from "@/Layouts/AuthenticatedLayout";
-import { Link } from '@inertiajs/react';// 追加
 
+import { Link } from '@inertiajs/react';
 
 const Index = (props) => {
-    const { posts } = props;
+    const { posts } = props; //propsの中のpostsだけを持って行ってる．
+    //console.log(props.posts);//上で分割代入しているのでもしくはpostsでもOK
 
     return (
         <Authenticated auth={props.auth} header={
@@ -17,6 +18,7 @@ const Index = (props) => {
                 <h1>Blog Name</h1>
 
                 { posts.map((post) => (
+
                     <div key={post.id}>
 
                         <h2>
@@ -25,6 +27,7 @@ const Index = (props) => {
 
                         <p>{ post.body }</p>
                     </div>
+
                 )) }
                 <Link href="/posts/create">Create</Link>
             </div>

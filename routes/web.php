@@ -39,14 +39,11 @@ Route::middleware('auth')->group(function () {
 
 Route::group(["middleware" => ["auth"]], function() {
 
-   //Route::get("/posts", function() {
-       //return Inertia::render("Post/Index");
-   //}) ;
     Route::get("/posts", [PostController::class, "index"]);
     Route::get("/posts/create", [PostController::class, "create"]);
     Route::post("posts", [PostController::class, "store"]);
     Route::get("/posts/{post}", [PostController::class, "show"]);
 
-
 });
+
 require __DIR__.'/auth.php';

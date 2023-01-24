@@ -13,7 +13,7 @@ class PostController extends Controller {
         //phpでいうviewがReactだとInertia::Renderになっている．
         //phpではwithを用いて引数を指定していたが，ReactだとURIの次にくる第二引数で指定すれば良い
     }
-    
+
     public function create() {
         return Inertia::render("Post/Create");
     }
