@@ -1,6 +1,5 @@
 import React from "react";
 import Authenticated from "@/Layouts/AuthenticatedLayout";
-
 import { Link } from '@inertiajs/react';
 
 const Index = (props) => {
