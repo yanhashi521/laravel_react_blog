@@ -1,17 +1,17 @@
 import React from "react";
-import { Link, useForm} from '@inertiajs/react';// 追加
+import { Link, useForm } from '@inertiajs/react';
 import Authenticated from "@/Layouts/AuthenticatedLayout";
 
-
-const Create = (props) => {
-    const {data, setData, post} = useForm({
-        title: "",
-        body: ""
+const Edit = (props) => {
+    const {post} = props;
+    const {data, setData, put} = useForm({
+        title: post.title,
+        body: post.body
     })
 
     const handleSendPosts = (e) => {
-        e.preventDefault();//デフォルトでリロードされてしまうため防いでいる．
-        post("/posts");
+        e.preventDefault();
+        put(`/posts/${post.id}`);
     }
 
     return (
@@ -22,22 +22,23 @@ const Create = (props) => {
             }>
             
             <div className="p-12">
-            
+                
                 <form onSubmit={handleSendPosts}>
                     <div>
                         <h2>Title</h2>
-                        <input type="text" placeholder="タイトル" onChange={(e) => setData("title", e.target.value)}/>
+                        <input type="text" placeholder="タイトル" value={data.title} onChange={(e) => setData("title", e.target.value)}/>
                         <span className="text-red-600">{props.errors.title}</span>
-                    </div>
+                    </div>                    
                     
                     <div>
                         <h2>Body</h2>
-                        <textarea placeholder="今日も1日お疲れさまでした。" onChange={(e) => setData("body", e.target.value)}></textarea>
+                        <textarea placeholder="今日も1日お疲れさまでした。" value={data.body} onChange={(e) => setData("body", e.target.value)}></textarea>
                         <span className="text-red-600">{props.errors.body}</span>
                     </div>
                     
                     <button type="submit" className="p-1 bg-purple-300 hover:bg-purple-400 rounded-md">send</button>
                 </form>
+                
                 <Link href="/posts">戻る</Link>
             </div>
             
@@ -45,4 +46,4 @@ const Create = (props) => {
         );
 }
 
-export default Create;
+export default Edit;

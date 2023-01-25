@@ -18,6 +18,19 @@ class PostController extends Controller {
         return Inertia::render("Post/Create");
     }
     
+    
+    public function edit(Post $post) {
+        return Inertia::render("Post/Edit", ["post" => $post]);
+        
+    }
+    
+    public function update(PostRequest $request, Post $post) {
+        $input = $request->all();
+        $post->fill($input)->save();
+        return redirect("/posts/" . $post->id);
+    }
+    
+    
     public function store(PostRequest $request, Post $post) {
         $input = $request->all();
         $post->fill($input)->save();
@@ -27,4 +40,10 @@ class PostController extends Controller {
     public function show(Post $post) {
         return Inertia::render("Post/Show", ["post" => $post]);
     }
+    
+    public function delete(Post $post) {
+        $post->delete();
+        return redirect("/posts");
+    }
+    
 }
