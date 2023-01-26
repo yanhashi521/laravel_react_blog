@@ -4,9 +4,11 @@ import Authenticated from "@/Layouts/AuthenticatedLayout";
 
 
 const Create = (props) => {
+    const {categories} = props;
     const {data, setData, post} = useForm({
         title: "",
-        body: ""
+        body: "",
+        category_id: categories[0].id
     })
 
     const handleSendPosts = (e) => {
@@ -34,6 +36,15 @@ const Create = (props) => {
                         <h2>Body</h2>
                         <textarea placeholder="今日も1日お疲れさまでした。" onChange={(e) => setData("body", e.target.value)}></textarea>
                         <span className="text-red-600">{props.errors.body}</span>
+                    </div>
+                    
+                    <div>
+                        <h2>Category</h2>
+                        <select onChange={e => setData("category_id", e.target.value)}>
+                        {categories.map((category) => (
+                            <option value={category.id}>{category.name}</option>
+                        ))}
+                        </select>
                     </div>
                     
                     <button type="submit" className="p-1 bg-purple-300 hover:bg-purple-400 rounded-md">send</button>
