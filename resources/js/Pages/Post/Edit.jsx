@@ -27,7 +27,7 @@ const Edit = (props) => {
                     <div>
                         <h2>Title</h2>
                         <input type="text" placeholder="タイトル" value={data.title} onChange={(e) => setData("title", e.target.value)}/>
-                        <span className="text-red-600">{props.errors.title}</span>
+                        <span className="text-red-600">{props.errors.title}</span>{/*は入力されたデータが入った引数*/}
                     </div>                    
                     
                     <div>
